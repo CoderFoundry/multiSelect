@@ -238,7 +238,7 @@ input.addEventListener('keydown', (e) => {
     }
 
     // Enter / Tab / Comma to select current (or only) item
-    const triggersSelect = (e.key === 'Enter' || e.key === 'Tab' || e.key === ',');
+    const triggersSelect = (e.key === 'Enter');
     if (triggersSelect && hasItems) {
         if (activeSuggestionIndex >= 0) {
             selectSuggestion(filteredSuggestions[activeSuggestionIndex]);
@@ -262,7 +262,10 @@ input.addEventListener('keydown', (e) => {
 
 // Hide suggestions on outside click
 document.addEventListener('click', (e) => {
+  
+    
     if (!container.contains(e.target)) {
+        input.value = '';   
         suggestionsList.style.display = 'none';
         if (container.getAttribute('role') === 'combobox') {
             container.setAttribute('aria-expanded', 'false');
@@ -272,6 +275,7 @@ document.addEventListener('click', (e) => {
 
 // Save button (demo)
 document.getElementById('saveBtn').addEventListener('click', () => {
+    input.value = '';
     const namesToSave = getSelectedNames();
     alert("Names to save: " + namesToSave.join(", "));
     // POST here if needed

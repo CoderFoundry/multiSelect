@@ -21,22 +21,30 @@
 }
 
 .chip {
-    background: #e0e0e0;
-    border-radius: 16px;
-    padding: 0 8px;
-    display: flex;
+    background: #f1f3f4;
+    border-radius: 20px;
+    padding: 0 10px;
+    display: inline-flex;
     align-items: center;
-    font-size: 1rem;
-    margin: 2px 0;
-}
-
-.chip button {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin: 2px;
+  }
+  
+  .chip button {
     border: none;
     background: transparent;
+    color: #666;
+    font-size: 1rem;
     margin-left: 6px;
-    font-size: 1.2rem;
     cursor: pointer;
-}
+  }
+  
+  .chip button:hover {
+    color: #e53935;
+  }
+
 
 #typeaheadInput {
     width: 100%;
@@ -71,3 +79,107 @@
 .suggestions li.active {
     background: #f0f0f0;
 }
+
+/* Layout container */
+.container {
+    max-width: 820px;
+  }
+  
+  /* Demo card */
+  .demo-card .card-body {
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+  
+  /* Input + list visual cohesion */
+  #typeaheadInput {
+    border-radius: .5rem;
+    border-color: #d7d7d7;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  
+  #typeaheadInput:focus {
+    border-color: #74a7ff;
+    box-shadow: 0 0 0 .2rem rgba(116, 167, 255, .2);
+    outline: none;
+  }
+  
+  /* Suggestions: attach to input edge, soften corners */
+  .suggestions {
+    border: 1px solid #d7d7d7;
+    border-top: none;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,.06);
+    animation: fadeIn .08s ease-out;
+  }
+  
+  /* Suggestion items: tighter rhythm & active contrast */
+  .suggestions li {
+    padding: .5rem .75rem;
+  }
+  
+  .suggestions li:hover,
+  .suggestions li.active {
+    background: #e8f0fe;
+  }
+  
+  /* Chips: cleaner spacing and hit area */
+  .selected-chips {
+    gap: .35rem;
+    margin-bottom: .35rem;
+  }
+  
+  .chip {
+    background: #f1f3f4;
+    border-radius: 999px;
+    padding: .2rem .6rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .9rem;
+    line-height: 1.6;
+  }
+  
+  .chip button {
+    width: 1.25rem;
+    height: 1.25rem;
+    line-height: 1;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 999px;
+  }
+  
+  .chip button:hover {
+    background: rgba(0,0,0,.06);
+  }
+  
+  /* Make the dropdown sit flush under the input */
+  .multi-typeahead {
+    position: relative;
+  }
+  
+  /* Small motion for list entrance */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-2px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Touch-friendly: increase targets on mobile */
+  @media (hover: none) {
+    .suggestions li { padding: .75rem .9rem; }
+    .chip button { width: 1.4rem; height: 1.4rem; }
+  }
+  
+  /* Optional: dark mode support */
+  @media (prefers-color-scheme: dark) {
+    body { background: #0f1116; color: #e5e7eb; }
+    .card { background: #111827; border-color: #1f2937; }
+    #typeaheadInput { background: #111827; color: #e5e7eb; border-color: #334155; }
+    .suggestions { background: #0b1220; border-color: #223047; box-shadow: 0 4px 16px rgba(0,0,0,.35); }
+    .suggestions li { color: #e5e7eb; }
+    .suggestions li:hover,
+    .suggestions li.active { background: #17223b; }
+    .chip { background: #1f2937; color: #e5e7eb; }
+    .chip button:hover { background: #2b3648; }
+  }
+  
