@@ -31,9 +31,36 @@ A simple **multi-select dropdown with typeahead search**, built using vanilla Ja
    cd your-repo-name
 
 ### Run with VS Code and Live Server 
+- Right-click on index.html in VS Code and select “Open with Live Server”.
+- This will launch the project in your browser at http://127.0.0.1:5500/ (or a similar port).
+= Install the Live Server extension if you don’t already have it.
 
+### How It Works
 
-Install the Live Server extension if you don’t already have it.
+ms.js sets up:
 
-Right-click on index.html in VS Code and select “Open with Live Server”.
-This will launch the project in your browser at http://127.0.0.1:5500/ (or a similar port).
+- A mock fetch interceptor (/api/people) that returns matches from a dataset of 200 names.
+
+- A debounced input handler to query and render suggestions.
+
+- Logic for multi-select chips and dropdown navigation.
+
+- The component keeps track of:
+
+- selectedPeople → Array of chosen people
+
+- filteredSuggestions → Suggestions based on current input
+
+### Comparison Note
+
+This project intentionally avoids using the native <select multiple> element. While <select> is fine for simple use cases, it has several limitations:
+
+- Inconsistent rendering across mobile devices and browsers.
+
+- Poor scalability when handling large datasets (hundreds of names).
+
+- Lacks typeahead search or filtering out of the box.
+
+- Provides a less intuitive user experience compared to chip-based UIs.
+
+By implementing a custom component with JavaScript and standard HTML elements, this solution offers better cross-device consistency, searchability, and a modern UX with removable chips and keyboard shortcuts.
