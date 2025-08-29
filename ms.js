@@ -191,10 +191,6 @@ function getSelectedNames() {
     return selectedPeople.map(person => person.name);
 }
 
-function getSelectedPeople() {
-    return selectedPeople.slice();
-}
-
 // Fetch/filter suggestions and render
 function filterAndRenderSuggestions() {
     const query = input.value;
